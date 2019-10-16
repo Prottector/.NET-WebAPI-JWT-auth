@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoffeMugApplicationProject.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20191016005107_Migrations")]
+    [Migration("20191016042517_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
