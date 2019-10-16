@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CoffeMugApplicationProject.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CoffeMugApplicationProject.Data
 {
-    public class ProductContext  : DbContext
+    public class ProductContext  : IdentityDbContext<IdentityUser>
     {
         
 
@@ -15,6 +17,11 @@ namespace CoffeMugApplicationProject.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<IdentityRole>().HasData(
+                new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
+                new { Id = "2", Name = "Customer", NormalizedName = "CUSTOMER" }
+                );
         }
 
         public DbSet<Product> Products { get; set; }

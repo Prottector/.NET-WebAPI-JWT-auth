@@ -10,11 +10,12 @@ namespace CoffeMugApplicationProject.Models
     {
         
         public Guid Id { get; set; }
-        [StringLength(100)]
+        [StringLength(100, ErrorMessage = "Name length can't be more than 100.")]   
         [Required]
         public string Name { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        [Range(1,999)]
+        public decimal? Price { get; set; }
 
      
 

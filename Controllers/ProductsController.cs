@@ -4,14 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;    
 using CoffeMugApplicationProject.Data;
 using CoffeMugApplicationProject.Models;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoffeMugApplicationProject.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("HealthPolicy")]
     public class ProductsController : ControllerBase
     {
         private readonly ProductContext _context;
@@ -84,7 +88,8 @@ namespace CoffeMugApplicationProject.Controllers
 
         // POST: api/Products
         [HttpPost]
-        public async Task<IActionResult> PostProduct([FromRoute] string Name, [FromRoute] decimal Price, [FromBody] Product product)
+        
+        public async Task<IActionResult> PostProduct([FromBody] Product product)
         {
             if (!ModelState.IsValid)
             {
